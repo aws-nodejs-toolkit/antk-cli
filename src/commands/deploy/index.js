@@ -6,6 +6,7 @@ async function deploy() {
     // parse variables
     // deploy artifact bucket
     // execute all separate deploy steps
+    console.info('deployeru')
 }
 
 module.exports.deploy = deploy;
