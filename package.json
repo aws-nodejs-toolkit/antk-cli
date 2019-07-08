@@ -1,0 +1,31 @@
+{
+  "name": "@aws-toolkit/cli",
+  "version": "0.0.1",
+  "description": "AWS Node.js Toolkit - CLI",
+  "main": "src/index.js",
+  "bin": {
+    "antk": "bin/antk.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aws-nodejs-toolkit/antk-cli.git"
+  },
+  "keywords": [
+    "aws",
+    "nodejs",
+    "toolkit",
+    "cli"
+  ],
+  "author": "Olivier Van Aken <olivier.va@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aws-nodejs-toolkit/antk-cli/issues"
+  },
+  "files": [
+    "src/**/*"
+  ],
+  "homepage": "https://github.com/aws-nodejs-toolkit/antk-cli#readme",
+  "dependencies": {
+    "commander": "^2.20.0"
+  }
+}
