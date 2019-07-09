@@ -17,7 +17,7 @@
     "cli"
   ],
   "author": "Olivier Van Aken <olivier.va@outlook.com>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/aws-nodejs-toolkit/antk-cli/issues"
   },
