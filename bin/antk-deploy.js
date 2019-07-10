@@ -14,7 +14,7 @@ program.option('-r, --region <name>');
 program.option('-s, --stack <name>');
 
 program.action(async (command) => {
-    await deploy(command.env, command.region, command.stack);
+    await deploy(command);
 });
 
 program.parse(process.argv);

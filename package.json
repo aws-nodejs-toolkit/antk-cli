@@ -26,6 +26,9 @@
   ],
   "homepage": "https://github.com/aws-nodejs-toolkit/antk-cli#readme",
   "dependencies": {
-    "commander": "^2.20.0"
+    "@aws-toolkit/aws-cli": "^1.0.1",
+    "@aws-toolkit/cloudformation": "0.0.1",
+    "commander": "^2.20.0",
+    "yaml": "^1.6.0"
   }
 }
