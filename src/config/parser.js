@@ -1,37 +1,34 @@
 'use strict';
 
-const { parse } = require('yaml');
+const reader = require('./reader');
+const variables = require('./variables');
+const _yaml = require('../yaml');
 
-class ConfigParser {
-    constructor(yaml) {
-        const config = parse(yaml);
+async function parse(path, options) {
+    const content = await reader.read(path);
+    const yaml = _yaml.parse(content);
+    const vars = variables.collect(yaml);
 
-        this.aws = config.aws;
-        this.stacks = config.stacks;
-        this.variables = config.variables;
+    const variableMap = {};
 
-        console.log(this.getStacks());
+    for (const variable of vars) {
+        const [type, ...key] = variables.parse(variable);
+        const result = await variables.resolve(type, key, options).catch((err) => {
+            console.log(err);
+        });
+        // if matches ${} continue
+        console.log(result);
+        variableMap[variable] = result;
     }
 
-    getRegion() {
-        return this.aws.region;
-    }
+    // for each var -> resolve
+    // get map of var:resolved value back
+    // apply map to yaml, replace method?
 
-    getStack(name) {
-        return this.getStacks()[name];
-    }
+    // yaml = resolved variables and all blabla,
 
-    getStacks() {
-        return this.stacks;
-    }
 
-    getVariable(name) {
-        return this.getVariables()[name];
-    }
-
-    getVariables() {
-        return this.variables;
-    }
+    return yaml;
 }
 
-module.exports.ConfigParser = ConfigParser;
+module.exports.parse = parse;

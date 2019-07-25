@@ -1,15 +1,11 @@
 'use strict';
 
-const path = require('path');
 const cloudformation = require('@aws-toolkit/cloudformation');
 
-const { ConfigParser } = require('../config/parser');
-const fs = require('../filesystem');
+const _config = require( '../config');
 
-async function deploy(options) {
-    const configPath = getConfigPath();
-    const yaml = await readYaml(configPath);
-    const parser = parseYaml(yaml);
+async function deploy(path, options) {
+    const config = await _config.parse(path, options);
 
     // read the toolkit.yml file
     // parse project properties, e.g. project name
@@ -17,33 +13,15 @@ async function deploy(options) {
     // deploy artifact bucket
     // execute all separate deploy steps
 
-    if (options.stack) {
-        const config = parser.getStack(options.stack);
-
-        cloudformation.deploy(config['template'], config[''])
-        // read specific stack config
-        // deploy stack
-    } else {
-        // deploy all stacks in order
-    }
-}
-
-function getConfigPath() {
-    for (const configName of ['aws-toolkit.yml', 'aws-toolkit.yaml']) {
-        const configPath = path.resolve(process.cwd(), configName);
-
-        if (fs.exists(configPath)) {
-            return configPath;
-        }
-    }
-}
-
-function parseYaml(yaml) {
-    return new ConfigParser(yaml);
-}
-
-async function readYaml(path) {
-    return await fs.readFile(path);
+    // if (options.stack) {
+    //     const config = parser.getStack(options.stack);
+    //
+    //     cloudformation.deploy(config['template'], config[''])
+    //     // read specific stack config
+    //     // deploy stack
+    // } else {
+    //     // deploy all stacks in order
+    // }
 }
 
 module.exports.deploy = deploy;
