@@ -16,4 +16,4 @@ async function resolve(name, decrypt = false) {
     return parameter['Parameter']['Value'];
 }
 
-module.exports = resolve;
+module.exports.resolve = resolve;

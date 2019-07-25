@@ -8,4 +8,4 @@ async function resolve(stackName, outputKey, region) {
     return output['OutputValue'];
 }
 
-module.exports = resolve;
+module.exports.resolve = resolve;
