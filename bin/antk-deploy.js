@@ -3,18 +3,24 @@
 'use strict';
 
 const program = require('commander');
+const minimist = require('minimist');
 
 const { deploy } = require('../src/commands/deploy');
 
+const argv = minimist(process.argv);
+delete argv['_'];
+
 program.name('antk deploy');
-program.usage('[options]');
+program.usage('<path> [options]');
 
-program.option('-e, --env, --environment <name>');
-program.option('-r, --region <name>');
-program.option('-s, --stack <name>');
+program.action(async (path) => {
+    const options = {};
 
-program.action(async (command) => {
-    await deploy(command);
+    Object.entries(argv).forEach(([key, value]) => {
+        options[key] = value;
+    });
+
+    await deploy(path, options);
 });
 
 program.parse(process.argv);
